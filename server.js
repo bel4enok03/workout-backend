@@ -9,7 +9,6 @@ require('dotenv').config();
 mongoose.set('strictQuery', false);
 
 const PORT = process.env.PORT || 8000;
-const MONGODB_URI = process.env.MONGODB_URI;
 
 app.use(
 	cors({
@@ -25,7 +24,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-// Routes
 app.use('/', workoutRouter);
 app.use('/auth', authRouter);
 app.use('/workouts', workoutRouter);
@@ -36,12 +34,11 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-	.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => {
-		console.log('Connected to MongoDB');
-		// Start the server
-		app.listen(PORT, () => {
-			console.log(`Server is running on port ${PORT}`);
-		});
-	})
-	.catch((err) => console.error(err));
+	.connect(process.env.MONGODB_LINK)
+	.then(() => console.log(`We were connected to Mongo`))
+	.catch((err) => console.log(err));
+
+
+app.listen(PORT, () => {
+	console.log(`I'm listening on PORT ${PORT}`);
+});
