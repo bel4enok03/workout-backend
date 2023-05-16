@@ -1,4 +1,3 @@
-// workoutRoutes.js
 const express = require('express');
 const router = express.Router();
 const { getWorkouts, saveWorkout, deleteWorkout, editWorkout } = require('../controlles/workoutController');

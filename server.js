@@ -7,7 +7,7 @@ const authRouter = require('./routes/authRoutes');
 
 app.use(
 	cors({
-		origin: 'http://localhost:3000', // this could also be an array of allowed origins
+		origin: 'http://localhost:3000',
 	})
 );
 require('dotenv').config();
@@ -17,8 +17,8 @@ const PORT = 8000 || process.env.port;
 
 app.use(express.json());
 app.use('/', workoutRouter);
-app.use('/auth', authRouter); // Добавляем маршруты для регистрации и входа
-app.use('/workouts', workoutRouter); // Маршруты тренировок
+app.use('/auth', authRouter); 
+app.use('/workouts', workoutRouter); 
 
 mongoose
 	.connect(process.env.MONGODB_LINK)
@@ -26,10 +26,10 @@ mongoose
 	.catch((err) => console.log(err));
 
 app.use((err, req, res, next) => {
-	console.error(err.stack); // Вывод ошибки в консоль
+	console.error(err.stack); 
 
 
-	res.status(500).send('Server Error'); // Отправка ответа с кодом ошибки
+	res.status(500).send('Server Error'); 
 });
 
 app.listen(PORT, () => {

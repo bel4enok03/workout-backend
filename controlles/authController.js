@@ -1,20 +1,19 @@
-// authController.js
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
 	try {
-		const { email, password } = req.body; // Изменено с username на email
+		const { email, password } = req.body; 
 
-		const existingUser = await User.findOne({ email }); // Изменено с username на email
+		const existingUser = await User.findOne({ email }); 
 		if (existingUser) {
-			return res.status(400).json({ message: 'Email already exists' }); // Изменено с Username на Email
+			return res.status(400).json({ message: 'Email already exists' }); 
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 10);
 
-		const user = await User.create({ email, password: hashedPassword }); // Изменено с username на email
+		const user = await User.create({ email, password: hashedPassword }); 
 
 		res.status(201).json({ message: 'User registered successfully' });
 	} catch (error) {
@@ -25,9 +24,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
 	try {
-		const { email, password } = req.body; // Изменено с username на email
+		const { email, password } = req.body; 
 
-		const user = await User.findOne({ email }); // Изменено с username на email
+		const user = await User.findOne({ email }); 
 		if (!user) {
 			return res.status(400).json({ message: 'Invalid credentials' });
 		}

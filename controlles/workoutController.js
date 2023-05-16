@@ -1,9 +1,8 @@
-// workoutController.js
 const WorkoutModel = require('../models/Workout');
 
 module.exports.getWorkouts = async (req, res, next) => {
 	try {
-		const user = req.user.userId; // Используем req.user.userId вместо req.user
+		const user = req.user.userId; 
 		const workouts = await WorkoutModel.find({ user });
 		res.send(workouts);
 	} catch (error) {
@@ -26,7 +25,7 @@ module.exports.saveWorkout = async (req, res) => {
 module.exports.deleteWorkout = async (req, res) => {
 	try {
 		const { _id } = req.body;
-        const user = req.user.userId; // Используем req.user.userId вместо req.user
+        const user = req.user.userId; 
 
 
 		await WorkoutModel.findOneAndDelete({ _id, user });

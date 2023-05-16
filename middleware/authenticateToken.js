@@ -13,7 +13,7 @@ const authenticateToken = (req, res, next) => {
 			return res.status(403).json({ message: 'Token verification failed' });
 		}
 
-		req.user = user; // Присваиваем пользователя объекту запроса для последующего использования
+		req.user = user; 
 		next();
 	});
 };
