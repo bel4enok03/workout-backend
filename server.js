@@ -5,11 +5,8 @@ const cors = require('cors');
 const workoutRouter = require('./routes/workoutRoutes');
 const authRouter = require('./routes/authRoutes');
 
-app.use(
-	cors({
-		origin: 'http://localhost:3000',
-	})
-);
+app.use(cors());
+
 require('dotenv').config();
 mongoose.set('strictQuery', false);
 
