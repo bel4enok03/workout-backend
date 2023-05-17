@@ -24,7 +24,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use('/', workoutRouter);
 app.use('/auth', authRouter);
 app.use('/workouts', workoutRouter);
 
